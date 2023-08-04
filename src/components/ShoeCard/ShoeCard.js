@@ -31,21 +31,39 @@ const ShoeCard = ({
       ? 'new-release'
       : 'default'
 
+  const PriceContainer = variant === "on-sale" ? PriceStrikeThrough : Price;
+
   return (
     <Link href={`/shoe/${slug}`}>
-      <Wrapper>
+      <article>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
+          {
+            variant === "default"
+            ? null
+            : (
+              <CardInfo variant = {variant}>
+                {
+                  variant === "on-sale" ? "sale" : "just released!"
+                }
+              </CardInfo>
+            )
+          }
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          <PriceContainer>{formatPrice(price)}</PriceContainer>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          {
+            variant === "on-sale"
+            ? <SalePrice>{formatPrice(salePrice)}</SalePrice>
+            : null 
+          }
         </Row>
-      </Wrapper>
+      </article>
     </Link>
   );
 };
@@ -55,16 +73,37 @@ const Link = styled.a`
   color: inherit;
 `;
 
-const Wrapper = styled.article``;
-
 const ImageWrapper = styled.div`
   position: relative;
+  width: 340px;
+  border-radius: 16px 16px 0 0;
 `;
 
-const Image = styled.img``;
+const CardInfo = styled.span`
+  position: absolute;
+  top: 12px;
+  right: -4px;
+  padding: 8px;
+  color: ${COLORS.white};
+  font-weight: 700;
+  font-size: ${14 / 16}rem;
+  text-transform: capitalize;
+  border-radius: 2px;
+  background-color: ${p => p.variant === "on-sale" ? COLORS.primary : COLORS.secondary};
+`;
+
+const Image = styled.img`
+  width: 100%;
+  border-top-right-radius: inherit;
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+`;
 
 const Row = styled.div`
   font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Name = styled.h3`
@@ -73,6 +112,7 @@ const Name = styled.h3`
 `;
 
 const Price = styled.span``;
+const PriceStrikeThrough = styled.s``;
 
 const ColorInfo = styled.p`
   color: ${COLORS.gray[700]};

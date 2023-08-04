@@ -9,13 +9,19 @@ const App = () => {
 
   return (
     <>
-      <Header />
+      <Header
+        zIndex = {1}
+      />
       <Main>
         <ShoeIndex sortId={sortId} setSortId={setSortId} />
       </Main>
     </>
   );
 };
+
+const HeaderWrapper = styled.div`
+  z-index: 1;
+`;
 
 const Main = styled.main`
   padding: 64px 32px;

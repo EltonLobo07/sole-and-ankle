@@ -36,14 +36,14 @@ const ShoeIndex = ({ sortId, setSortId }) => {
           </Select>
         </Header>
         <Spacer size={34} />
-        {/*<ShoeGrid />*/}
+        <ShoeGrid />
       </MainColumn>
     </Wrapper>
   );
 };
 
 const BreadcrumbsWrapper = styled(Breadcrumbs)`
-  padding-top: 15px;
+  padding-top: 13px;
 `;
 
 const Wrapper = styled.div`
@@ -52,7 +52,7 @@ const Wrapper = styled.div`
 `;
 
 const LeftColumn = styled.div`
-  width: 250px;
+  min-width: 250px;
 `;
 
 const MainColumn = styled.div`
