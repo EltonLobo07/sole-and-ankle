@@ -3,8 +3,8 @@ import styled from 'styled-components/macro';
 
 import { COLORS } from '../../constants';
 
-const Breadcrumbs = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>;
+const Breadcrumbs = ({ children, className }) => {
+  return <Wrapper className = {className}>{children}</Wrapper>;
 };
 
 Breadcrumbs.Crumb = ({ href, children, delegated }) => {
